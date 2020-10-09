@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.ui.tooling.preview.Preview
 import com.example.ayudamobile.composables.SignUpPage
 import com.example.ayudamobile.composables.form
+import com.example.ayudamobile.composables.mainScreen
 import com.example.ayudamobile.ui.AyudaMobileTheme
 
 class MainActivity : AppCompatActivity() {
@@ -21,8 +22,8 @@ class MainActivity : AppCompatActivity() {
             AyudaMobileTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-
-                    form(vm = vm)
+                    mainScreen()
+                    // form(vm = vm)
                 }
             }
         }

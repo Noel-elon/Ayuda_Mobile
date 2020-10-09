@@ -3,10 +3,12 @@ package com.example.ayudamobile.composables
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.material.Button
+import androidx.compose.material.Divider
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
@@ -28,7 +30,9 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
+import com.example.ayudamobile.ui.bluish
 import com.example.ayudamobile.ui.purple200
+import com.example.ayudamobile.ui.red
 
 @Preview(showBackground = true)
 @Composable
@@ -53,12 +57,8 @@ fun mainScreen() {
 
 
     Surface(
-        color = Color.White,
+        color = red,
         modifier = Modifier.fillMaxSize(),
-        shape = RoundedCornerShape(40.dp).copy(
-            topLeft = ZeroCornerSize,
-            topRight = ZeroCornerSize
-        )
     ) {
         ScrollableColumn(
             modifier = mod,
@@ -70,7 +70,7 @@ fun mainScreen() {
                 modifier = Modifier.padding(16.dp),
                 style = TextStyle(
                     fontSize = 22.sp,
-                    color = Color.Black,
+                    color = Color.White,
                     fontWeight = FontWeight.ExtraBold,
                     fontFamily = FontFamily.SansSerif
                 )
@@ -80,9 +80,11 @@ fun mainScreen() {
 
             OutlinedTextField(value = email.value, onValueChange = {
                 email.value = it
-            }, modifier = mod, label = { Text(text = "Email") }, leadingIcon = {
+            },
+                activeColor = bluish,
+                inactiveColor = Color.White, modifier = mod, label = { Text(text = "Email") }, leadingIcon = {
                 Icon(
-                    Icons.Filled.Email
+                    Icons.Filled.Email, tint = Color.White
                 )
             }, keyboardType = KeyboardType.Email)
 
@@ -91,29 +93,39 @@ fun mainScreen() {
 
             OutlinedTextField(value = password.value, onValueChange = {
                 password.value = it
-            }, mod, label = { Text(text = "Password") }, leadingIcon = {
+            },
+                activeColor = bluish,
+                inactiveColor = Color.White, modifier = mod, label = { Text(text = "Password") }, leadingIcon = {
                 Icon(
-                    Icons.Filled.Lock
+                    Icons.Filled.Lock, tint = Color.White
                 )
             }, keyboardType = KeyboardType.Password)
 
 
             Button(
                 onClick = {},
-                backgroundColor = purple200,
-                shape = RoundedCornerShape(4.dp),
+                backgroundColor = bluish,
+                shape = RoundedCornerShape(8.dp),
                 contentColor = Color.White,
                 modifier = Modifier.width(300.dp).padding(8.dp)
             ) {
                 Text(text = "Sign In")
             }
 
-            Spacer(modifier = Modifier.padding(vertical = 4.dp))
+            Divider(modifier = Modifier.padding(16.dp), color = bluish)
 
             Text(
-                text = signUpText,
-                color = purple200,
-                modifier = Modifier.padding(8.dp)
+                text = "or",
+                fontSize = 12.sp,
+                color = bluish,
+                modifier = Modifier.padding(4.dp)
+            )
+
+            Text(
+                text = "Sign in",
+                fontSize = 16.sp,
+                modifier = Modifier.padding(8.dp).clickable(onClick = {}),
+                color = Color.White
             )
 
 

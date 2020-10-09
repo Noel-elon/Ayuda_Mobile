@@ -2,15 +2,11 @@ package com.example.ayudamobile.composables
 
 import android.content.Context
 import android.util.Log
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.ScrollableColumn
-import androidx.compose.foundation.Text
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.shape.ZeroCornerSize
-import androidx.compose.material.Button
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Surface
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.AndroidEmbeddingContext
@@ -33,7 +29,9 @@ import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import com.example.ayudamobile.AuthViewModel
 import com.example.ayudamobile.models.UserModel
+import com.example.ayudamobile.ui.bluish
 import com.example.ayudamobile.ui.purple200
+import com.example.ayudamobile.ui.red
 
 
 @Preview
@@ -48,32 +46,9 @@ fun SignUpPage() {
 
 
 @Composable
-fun bg() {
-
-
-    Surface(color = purple200) {
-        Column(
-            verticalArrangement = Arrangement.Bottom,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(bottom = 8.dp)
-        ) {
-
-
-        }
-
-
-    }
-}
-
-@Composable
 fun form(vm: AuthViewModel? = null) {
 
-    val signInText = annotatedString {
-        append("Already have an account?")
-        withStyle(SpanStyle(Color.Blue)) {
-            append("Sign in!")
-        }
-    }
+
     val mod = Modifier.padding(bottom = 8.dp)
     var firstName = remember { mutableStateOf(TextFieldValue("")) }
     val lastName = remember { mutableStateOf(TextFieldValue("")) }
@@ -94,24 +69,33 @@ fun form(vm: AuthViewModel? = null) {
     )
 
     Surface(
-        color = Color.White,
+        color = bluish,
         modifier = Modifier.fillMaxSize(),
-        shape = RoundedCornerShape(40.dp).copy(
-            topLeft = ZeroCornerSize,
-            topRight = ZeroCornerSize
-        )
-    ) {
+
+        ) {
+
+
         ScrollableColumn(
             modifier = mod,
             verticalArrangement = Arrangement.SpaceEvenly,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Create your account",
-                modifier = Modifier.padding(16.dp),
+                text = "Hey There!",
+                modifier = Modifier.padding(top = 8.dp),
+                style = TextStyle(
+                    fontSize = 25.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.ExtraBold,
+                    fontFamily = FontFamily.SansSerif
+                )
+            )
+            Text(
+                text = "Sign up",
+                modifier = Modifier.padding(top = 8.dp, bottom = 8.dp),
                 style = TextStyle(
                     fontSize = 22.sp,
-                    color = Color.Black,
+                    color = Color.White,
                     fontWeight = FontWeight.ExtraBold,
                     fontFamily = FontFamily.SansSerif
                 )
@@ -121,11 +105,11 @@ fun form(vm: AuthViewModel? = null) {
                 value = firstName.value,
                 onValueChange = {
                     firstName.value = it
-                }, modifier = mod,
+                }, activeColor = red, inactiveColor = Color.White, modifier = mod,
                 label = { Text(text = "First Name") },
                 leadingIcon = {
                     Icon(
-                        Icons.Filled.Person
+                        Icons.Filled.Person, tint = Color.White
                     )
                 })
 
@@ -133,54 +117,92 @@ fun form(vm: AuthViewModel? = null) {
                 value = lastName.value,
                 onValueChange = {
                     lastName.value = it
-                }, modifier = mod,
+                }, activeColor = red, inactiveColor = Color.White, modifier = mod,
                 label = { Text(text = "Last Name") },
                 leadingIcon = {
                     Icon(
-                        Icons.Filled.Person
+                        Icons.Filled.Person, tint = Color.White
                     )
                 })
 
-            OutlinedTextField(value = email.value, onValueChange = {
-                email.value = it
-            }, modifier = mod, label = { Text(text = "Email") }, leadingIcon = {
-                Icon(
-                    Icons.Filled.Email
-                )
-            }, keyboardType = KeyboardType.Email)
+            OutlinedTextField(
+                value = email.value,
+                onValueChange = {
+                    email.value = it
+                },
+                activeColor = red,
+                inactiveColor = Color.White,
+                modifier = mod,
+                label = { Text(text = "Email") },
+                leadingIcon = {
+                    Icon(
+                        Icons.Filled.Email, tint = Color.White
+                    )
+                },
+                keyboardType = KeyboardType.Email
+            )
 
-            OutlinedTextField(value = school.value, onValueChange = {
-                school.value = it
-            }, mod, label = { Text(text = "School") }, leadingIcon = {
-                Icon(
-                    Icons.Filled.Home
-                )
-            })
+            OutlinedTextField(
+                value = school.value,
+                onValueChange = {
+                    school.value = it
+                },
+                activeColor = red,
+                inactiveColor = Color.White,
+                modifier = mod,
+                label = { Text(text = "School") },
+                leadingIcon = {
+                    Icon(
+                        Icons.Filled.Home, tint = Color.White
+                    )
+                })
 
-            OutlinedTextField(value = country.value, onValueChange = {
-                country.value = it
-            }, mod, label = { Text(text = "Country") }, leadingIcon = {
-                Icon(
-                    Icons.Filled.LocationOn
-                )
-            })
+            OutlinedTextField(
+                value = country.value,
+                onValueChange = {
+                    country.value = it
+                },
+                activeColor = red,
+                inactiveColor = Color.White,
+                modifier = mod,
+                label = { Text(text = "Country") },
+                leadingIcon = {
+                    Icon(
+                        Icons.Filled.LocationOn, tint = Color.White
+                    )
+                })
 
-            OutlinedTextField(value = field.value, onValueChange = {
-                field.value = it
-            }, mod, label = { Text(text = "Field") }, leadingIcon = {
-                Icon(
-                    Icons.Filled.Info
-                )
-            })
+            OutlinedTextField(
+                value = field.value,
+                onValueChange = {
+                    field.value = it
+                },
+                activeColor = red,
+                inactiveColor = Color.White,
+                modifier = mod,
+                label = { Text(text = "Field") },
+                leadingIcon = {
+                    Icon(
+                        Icons.Filled.Info, tint = Color.White
+                    )
+                })
 
-            OutlinedTextField(value = password.value, onValueChange = {
-                password.value = it
-            }, mod, label = { Text(text = "Password") }, leadingIcon = {
-                Icon(
-                    Icons.Filled.Lock
-                )
-            }, keyboardType = KeyboardType.Password)
-
+            OutlinedTextField(
+                value = password.value,
+                onValueChange = {
+                    password.value = it
+                },
+                activeColor = red,
+                inactiveColor = Color.White,
+                modifier = mod,
+                label = { Text(text = "Password") },
+                leadingIcon = {
+                    Icon(
+                        Icons.Filled.Lock, tint = Color.White
+                    )
+                },
+                keyboardType = KeyboardType.Password
+            )
 
             Button(
                 onClick = {
@@ -188,20 +210,28 @@ fun form(vm: AuthViewModel? = null) {
                     vm?.registerUser(userModel = userModel)
 
                 },
-                backgroundColor = purple200,
-                shape = RoundedCornerShape(4.dp),
+                backgroundColor = red,
+                shape = RoundedCornerShape(8.dp),
                 contentColor = Color.White,
                 modifier = Modifier.width(300.dp).padding(8.dp)
             ) {
                 Text(text = "Sign up")
             }
 
-            Spacer(modifier = Modifier.padding(vertical = 4.dp))
+            Divider(modifier = Modifier.padding(16.dp), color = red)
 
             Text(
-                text = signInText,
-                color = purple200,
-                modifier = Modifier.padding(8.dp)
+                text = "or",
+                fontSize = 12.sp,
+                color = red,
+                modifier = Modifier.padding(4.dp)
+            )
+
+            Text(
+                text = "Sign in",
+                fontSize = 16.sp,
+                modifier = Modifier.padding(8.dp).clickable(onClick = {}),
+                color = Color.White
             )
 
 
