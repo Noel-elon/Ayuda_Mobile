@@ -75,7 +75,7 @@ fun form(vm: AuthViewModel? = null) {
         }
     }
     val mod = Modifier.padding(bottom = 8.dp)
-    val firstName = remember { mutableStateOf(TextFieldValue("")) }
+    var firstName = remember { mutableStateOf(TextFieldValue("")) }
     val lastName = remember { mutableStateOf(TextFieldValue("")) }
     val email = remember { mutableStateOf(TextFieldValue("")) }
     val school = remember { mutableStateOf(TextFieldValue("")) }
@@ -185,7 +185,7 @@ fun form(vm: AuthViewModel? = null) {
             Button(
                 onClick = {
                     Log.d("Button: ", "$userModel")
-                    //vm?.registerUser(userModel = userModel)
+                    vm?.registerUser(userModel = userModel)
 
                 },
                 backgroundColor = purple200,

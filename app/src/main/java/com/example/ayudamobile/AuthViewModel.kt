@@ -23,7 +23,7 @@ class AuthViewModel : ViewModel() {
                     if (response.isSuccessful) {
                         Log.d("ResponseSuccess: ", response.code().toString())
                     } else {
-                        Log.d("ResponseFail: ", response.code().toString())
+                        Log.d("ResponseFail: ", response.code().toString() + response.message())
                     }
                 }
 
