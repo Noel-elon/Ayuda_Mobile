@@ -1,0 +1,2 @@
+rootProject.name = "Ayuda Mobile"
+include ':app'
