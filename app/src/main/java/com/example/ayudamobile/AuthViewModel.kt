@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ayudamobile.models.AuthResponse
 import com.example.ayudamobile.models.UserModel
 import com.example.ayudamobile.network.RetrofitClient
 import kotlinx.coroutines.Dispatchers
@@ -18,17 +19,16 @@ class AuthViewModel : ViewModel() {
     fun registerUser(userModel: UserModel) {
         viewModelScope.launch(Dispatchers.Default) {
             val response = RetrofitClient.createApiService().registerUser(userModel = userModel)
-            response.enqueue(object : Callback<Void> {
-                override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                    if (response.isSuccessful) {
-                        Log.d("ResponseSuccess: ", response.code().toString())
-                    } else {
-                        Log.d("ResponseFail: ", response.code().toString() + response.message())
-                    }
+            response.enqueue(object : Callback<AuthResponse>{
+                override fun onResponse(
+                    call: Call<AuthResponse>,
+                    response: Response<AuthResponse>
+                ) {
+
                 }
 
-                override fun onFailure(call: Call<Void>, t: Throwable) {
-                    Log.d("Failure: ", t.message.toString())
+                override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+
                 }
 
 
@@ -40,17 +40,21 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.Default) {
             val response =
                 RetrofitClient.createApiService().loginUser(email = email, password = password)
-            response.enqueue(object : Callback<Void> {
-                override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                    if (response.isSuccessful) {
-                        Log.d("ResponseSuccess: ", response.code().toString())
-                    } else {
-                        Log.d("ResponseFail: ", response.code().toString())
+            response.enqueue(object : Callback<AuthResponse>{
+                override fun onResponse(
+                    call: Call<AuthResponse>,
+                    response: Response<AuthResponse>
+                ) {
+                    if (response.isSuccessful){
+
+                    }else{
+
                     }
+
                 }
 
-                override fun onFailure(call: Call<Void>, t: Throwable) {
-                    Log.d("Failure: ", t.message.toString())
+                override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+
                 }
 
 
