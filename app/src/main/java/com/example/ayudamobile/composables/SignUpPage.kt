@@ -1,5 +1,7 @@
 package com.example.ayudamobile.composables
 
+import android.content.Context
+import android.util.Log
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
@@ -11,6 +13,7 @@ import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.runtime.AndroidEmbeddingContext
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,15 +31,17 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
+import com.example.ayudamobile.AuthViewModel
+import com.example.ayudamobile.models.UserModel
 import com.example.ayudamobile.ui.purple200
 
 
 @Preview
 @Composable
 fun SignUpPage() {
-        form()
-        //bg()
 
+    form()
+    //bg()
 
 
 }
@@ -61,7 +66,7 @@ fun bg() {
 }
 
 @Composable
-fun form() {
+fun form(vm: AuthViewModel? = null) {
 
     val signInText = annotatedString {
         append("Already have an account?")
@@ -78,6 +83,15 @@ fun form() {
 
     val country = remember { mutableStateOf(TextFieldValue("")) }
     val field = remember { mutableStateOf(TextFieldValue("")) }
+    val userModel = UserModel(
+        firstName = firstName.value.text,
+        lastName = lastName.value.text,
+        email = email.value.text,
+        school = school.value.text,
+        country = country.value.text,
+        field = field.value.text,
+        password = password.value.text
+    )
 
     Surface(
         color = Color.White,
@@ -169,7 +183,11 @@ fun form() {
 
 
             Button(
-                onClick = {},
+                onClick = {
+                    Log.d("Button: ", "$userModel")
+                    //vm?.registerUser(userModel = userModel)
+
+                },
                 backgroundColor = purple200,
                 shape = RoundedCornerShape(4.dp),
                 contentColor = Color.White,
