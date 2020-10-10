@@ -10,7 +10,9 @@ data class UserModel(
     val password: String
 
 
-)data class AuthResponse(
+)
+
+data class AuthResponse(
     val accessToken: String,
     val refreshToken: String,
     val user: UserResponse
@@ -30,3 +32,5 @@ data class UserResponse(
     val questions: List<Any>,
     val school: String
 )
+
+class AllUsersResponse : ArrayList<UserResponse>()
