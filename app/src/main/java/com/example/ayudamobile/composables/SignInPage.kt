@@ -38,7 +38,10 @@ import com.example.ayudamobile.ui.red
 @Preview(showBackground = true)
 @Composable
 fun SignInPage() {
-    mainScreen()
+    Surface(color = red, modifier = Modifier.fillMaxSize()) {
+        mainScreen()
+    }
+
 
 }
 
@@ -46,91 +49,97 @@ fun SignInPage() {
 @Composable
 fun mainScreen() {
 
-    val signUpText = annotatedString {
-        append("Don't have an account? ")
-        withStyle(SpanStyle(Color.Blue)) {
-            append("Sign up!")
-        }
-    }
     val mod = Modifier.padding(bottom = 8.dp)
     val email = remember { mutableStateOf(TextFieldValue("")) }
     val password = remember { mutableStateOf(TextFieldValue("")) }
 
 
-    Surface(
-        color = red,
-        modifier = Modifier.fillMaxSize(),
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxSize()
     ) {
-        ScrollableColumn(
-            modifier = mod,
-            verticalArrangement = Arrangement.SpaceEvenly,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "Sign in to your account",
-                modifier = Modifier.padding(16.dp),
-                style = TextStyle(
-                    fontSize = 22.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.ExtraBold,
-                    fontFamily = appFontFamily
-                )
+        Text(
+            text = "Welcome Back!",
+            modifier = Modifier.padding(top = 8.dp, start = 16.dp),
+            style = TextStyle(
+                fontSize = 30.sp,
+                color = Color.White,
+                fontWeight = FontWeight.ExtraBold,
+                fontFamily = appFontFamily
             )
+        )
+        Text(
+            text = "Sign in",
+            modifier = Modifier.padding(start = 16.dp, top = 4.dp),
+            style = TextStyle(
+                fontSize = 22.sp,
+                color = Color.White,
+                fontWeight = FontWeight.ExtraBold,
+                fontFamily = appFontFamily
+            )
+        )
 
-
-
-            OutlinedTextField(value = email.value, onValueChange = {
+        OutlinedTextField(
+            value = email.value,
+            onValueChange = {
                 email.value = it
             },
-                activeColor = bluish,
-                inactiveColor = Color.White, modifier = mod, label = { Text(text = "Email") }, leadingIcon = {
+            activeColor = bluish,
+            inactiveColor = Color.White,
+            modifier = mod,
+            label = { Text(text = "Email") },
+            leadingIcon = {
                 Icon(
                     Icons.Filled.Email, tint = Color.White
                 )
-            }, keyboardType = KeyboardType.Email)
-
-
-
-
-            OutlinedTextField(value = password.value, onValueChange = {
+            },
+            keyboardType = KeyboardType.Email
+        )
+        OutlinedTextField(
+            value = password.value,
+            onValueChange = {
                 password.value = it
             },
-                activeColor = bluish,
-                inactiveColor = Color.White, modifier = mod, label = { Text(text = "Password") }, leadingIcon = {
+            activeColor = bluish,
+            inactiveColor = Color.White,
+            modifier = mod,
+            label = { Text(text = "Password") },
+            leadingIcon = {
                 Icon(
                     Icons.Filled.Lock, tint = Color.White
                 )
-            }, keyboardType = KeyboardType.Password)
+            },
+            keyboardType = KeyboardType.Password
+        )
 
 
-            Button(
-                onClick = {},
-                backgroundColor = bluish,
-                shape = RoundedCornerShape(8.dp),
-                contentColor = Color.White,
-                modifier = Modifier.width(300.dp).padding(8.dp)
-            ) {
-                Text(text = "Sign In")
-            }
-
-            Divider(modifier = Modifier.padding(16.dp), color = bluish)
-
-            Text(
-                text = "or",
-                fontSize = 12.sp,
-                color = bluish,
-                modifier = Modifier.padding(4.dp)
-            )
-
-            Text(
-                text = "Sign in",
-                fontSize = 16.sp,
-                modifier = Modifier.padding(8.dp).clickable(onClick = {}),
-                color = Color.White
-            )
-
-
+        Button(
+            onClick = {},
+            backgroundColor = bluish,
+            shape = RoundedCornerShape(8.dp),
+            contentColor = Color.White,
+            modifier = Modifier.width(300.dp).padding(8.dp)
+        ) {
+            Text(text = "Sign In")
         }
+
+        Divider(modifier = Modifier.padding(start = 32.dp, end = 32.dp), color = bluish)
+
+        Text(
+            text = "or",
+            fontSize = 16.sp,
+            color = bluish,
+            modifier = Modifier.padding(4.dp)
+        )
+
+        Text(
+            text = "Sign up",
+            fontSize = 16.sp,
+            modifier = Modifier.padding(8.dp).clickable(onClick = {}),
+            color = Color.White
+        )
+
 
     }
 }

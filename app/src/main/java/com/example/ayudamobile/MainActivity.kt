@@ -7,6 +7,7 @@ import androidx.compose.foundation.Text
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.setContent
 import androidx.lifecycle.ViewModelProvider
 import androidx.ui.tooling.preview.Preview
@@ -15,8 +16,10 @@ import androidx.work.WorkManager
 import com.example.ayudamobile.composables.SignUpPage
 import com.example.ayudamobile.composables.form
 import com.example.ayudamobile.composables.mainScreen
+import com.example.ayudamobile.composables.topics
 import com.example.ayudamobile.ui.AyudaMobileTheme
 import com.example.ayudamobile.ui.bluish
+import com.example.ayudamobile.ui.red
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,9 +35,10 @@ class MainActivity : AppCompatActivity() {
         setContent {
             AyudaMobileTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(color = bluish) {
-                   // mainScreen()
-                    form()
+                Surface(color = Color.White) {
+                   topics()
+                    // mainScreen()
+                   // form()
                 }
             }
         }
