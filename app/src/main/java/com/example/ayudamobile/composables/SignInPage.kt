@@ -30,6 +30,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
+import com.example.ayudamobile.appFontFamily
 import com.example.ayudamobile.ui.bluish
 import com.example.ayudamobile.ui.purple200
 import com.example.ayudamobile.ui.red
@@ -72,7 +73,7 @@ fun mainScreen() {
                     fontSize = 22.sp,
                     color = Color.White,
                     fontWeight = FontWeight.ExtraBold,
-                    fontFamily = FontFamily.SansSerif
+                    fontFamily = appFontFamily
                 )
             )
 

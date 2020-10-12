@@ -76,7 +76,7 @@ class AuthViewModel : ViewModel() {
                 }
 
                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    Log.d("GetUserFailure: ", "${t.message}")
                 }
 
 

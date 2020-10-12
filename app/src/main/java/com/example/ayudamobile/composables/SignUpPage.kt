@@ -28,6 +28,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import com.example.ayudamobile.AuthViewModel
+import com.example.ayudamobile.appFontFamily
+import com.example.ayudamobile.appTypography
 import com.example.ayudamobile.models.UserModel
 import com.example.ayudamobile.ui.bluish
 import com.example.ayudamobile.ui.purple200
@@ -68,44 +70,42 @@ fun form(vm: AuthViewModel? = null) {
         password = password.value.text
     )
 
-    Surface(
-        color = bluish,
-        modifier = Modifier.fillMaxSize(),
+    ScrollableColumn(
 
-        ) {
+        modifier = Modifier.fillMaxWidth()
+    ) {
 
-
-        ScrollableColumn(
-            modifier = mod,
-            verticalArrangement = Arrangement.SpaceEvenly,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "Hey There!",
-                modifier = Modifier.padding(top = 8.dp),
-                style = TextStyle(
-                    fontSize = 25.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.ExtraBold,
-                    fontFamily = FontFamily.SansSerif
-                )
+        Text(
+            text = "Hey There!",
+            modifier = Modifier.padding(top = 8.dp, start = 16.dp),
+            style = TextStyle(
+                fontSize = 30.sp,
+                color = Color.White,
+                fontWeight = FontWeight.ExtraBold,
+                fontFamily = appFontFamily
             )
-            Text(
-                text = "Sign up",
-                modifier = Modifier.padding(top = 8.dp, bottom = 8.dp),
-                style = TextStyle(
-                    fontSize = 22.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.ExtraBold,
-                    fontFamily = FontFamily.SansSerif
-                )
+        )
+        Text(
+            text = "Sign up",
+            modifier = Modifier.padding(start = 16.dp, top = 4.dp),
+            style = TextStyle(
+                fontSize = 22.sp,
+                color = Color.White,
+                fontWeight = FontWeight.ExtraBold,
+                fontFamily = appFontFamily
             )
+        )
 
+
+
+
+
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             OutlinedTextField(
                 value = firstName.value,
                 onValueChange = {
                     firstName.value = it
-                }, activeColor = red, inactiveColor = Color.White, modifier = mod,
+                }, activeColor = red, inactiveColor = Color.White,
                 label = { Text(text = "First Name") },
                 leadingIcon = {
                     Icon(
@@ -117,13 +117,14 @@ fun form(vm: AuthViewModel? = null) {
                 value = lastName.value,
                 onValueChange = {
                     lastName.value = it
-                }, activeColor = red, inactiveColor = Color.White, modifier = mod,
+                }, activeColor = red, inactiveColor = Color.White,
                 label = { Text(text = "Last Name") },
                 leadingIcon = {
                     Icon(
                         Icons.Filled.Person, tint = Color.White
                     )
                 })
+
 
             OutlinedTextField(
                 value = email.value,
@@ -156,6 +157,8 @@ fun form(vm: AuthViewModel? = null) {
                         Icons.Filled.Home, tint = Color.White
                     )
                 })
+
+
 
             OutlinedTextField(
                 value = country.value,
@@ -218,11 +221,12 @@ fun form(vm: AuthViewModel? = null) {
                 Text(text = "Sign up")
             }
 
-            Divider(modifier = Modifier.padding(16.dp), color = red)
+
+            Divider(modifier = Modifier.padding(start = 32.dp, end = 32.dp), color = red)
 
             Text(
                 text = "or",
-                fontSize = 12.sp,
+                fontSize = 15.sp,
                 color = red,
                 modifier = Modifier.padding(4.dp)
             )
@@ -230,13 +234,14 @@ fun form(vm: AuthViewModel? = null) {
             Text(
                 text = "Sign in",
                 fontSize = 16.sp,
-                modifier = Modifier.padding(8.dp).clickable(onClick = {}),
+                modifier = Modifier.padding(bottom = 16.dp).clickable(onClick = {}),
                 color = Color.White
             )
 
-
         }
 
+
     }
+
 
 }

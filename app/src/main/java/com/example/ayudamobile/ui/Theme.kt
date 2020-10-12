@@ -5,6 +5,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import com.example.ayudamobile.appTypography
 
 private val DarkColorPalette = darkColors(
         primary = purple200,
@@ -37,7 +38,7 @@ fun AyudaMobileTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Compo
 
     MaterialTheme(
             colors = colors,
-            typography = typography,
+            typography = appTypography,
             shapes = shapes,
             content = content
     )

@@ -16,6 +16,7 @@ import com.example.ayudamobile.composables.SignUpPage
 import com.example.ayudamobile.composables.form
 import com.example.ayudamobile.composables.mainScreen
 import com.example.ayudamobile.ui.AyudaMobileTheme
+import com.example.ayudamobile.ui.bluish
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,9 +32,9 @@ class MainActivity : AppCompatActivity() {
         setContent {
             AyudaMobileTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    mainScreen()
-                    // form(vm = vm)
+                Surface(color = bluish) {
+                   // mainScreen()
+                    form()
                 }
             }
         }
