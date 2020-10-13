@@ -1,5 +1,7 @@
 package com.example.ayudamobile.composables
 
+import androidx.activity.OnBackPressedDispatcher
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
@@ -14,8 +16,10 @@ import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Providers
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.savedinstancestate.rememberSavedInstanceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,7 +34,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
-import com.example.ayudamobile.appFontFamily
+import com.example.ayudamobile.*
 import com.example.ayudamobile.ui.bluish
 import com.example.ayudamobile.ui.purple200
 import com.example.ayudamobile.ui.red
@@ -39,16 +43,43 @@ import com.example.ayudamobile.ui.red
 @Composable
 fun SignInPage() {
     Surface(color = red, modifier = Modifier.fillMaxSize()) {
-        mainScreen()
+       // mainScreen()
     }
 
 
 }
 
+@Composable
+fun navMain(viewModel: AuthViewModel, backDispatcher: OnBackPressedDispatcher) {
+    val navigator: Navigator<Destination> = rememberSavedInstanceState(
+        saver = Navigator.saver(backDispatcher)
+    ) {
+        Navigator(Destination.SignIn, backDispatcher)
+    }
+    val actions = remember(navigator) { Actions(navigator) }
+
+    Providers(BackDispatcherAmbient provides backDispatcher) {
+        ProvideDisplayInsets {
+            Crossfade(navigator.current) { destination ->
+                when (destination) {
+                    is Destination.SignIn -> {
+                        mainScreen(viewModel = viewModel, onNavigateClick = actions.signUp)
+                    }
+                    is Destination.Feed -> {
+                        topics()
+                    }
+                    is Destination.SignUp -> {
+                        form(viewModel)
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 @Composable
-fun mainScreen() {
-
+fun mainScreen(viewModel: AuthViewModel? = null, onNavigateClick: () -> Unit) {
     val mod = Modifier.padding(bottom = 8.dp)
     val email = remember { mutableStateOf(TextFieldValue("")) }
     val password = remember { mutableStateOf(TextFieldValue("")) }
@@ -136,7 +167,7 @@ fun mainScreen() {
         Text(
             text = "Sign up",
             fontSize = 16.sp,
-            modifier = Modifier.padding(8.dp).clickable(onClick = {}),
+            modifier = Modifier.padding(8.dp).clickable(onClick = { onNavigateClick }),
             color = Color.White
         )
 
